@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variables en Javascript</title>
+</head>
+<body>
+    <p id="parrafo1"></p>
+    <p id="parrafo2"></p>
+    <p id="parrafo3"></p>
+    <p id="parrafo4"></p>
+    <script>
+        var nombre;
+            document.getElementById("parrafo1").innerHTML=nombre;
+            nombre="Belén"
+            document.getElementById("parrafo2").innerHTML=nombre;
+        var pais="España"
+            nacimiento=1990
+            boda="2023"
+            mayor=2008
+        var texto= nombre + " es de nacionalidad española y ha alcanzado la mayoría de edad en "+ mayor ;
+            document.getElementById("parrafo3").innerHTML=texto;
+           
+            
+            alert(typeof(pais))
+            alert(typeof(nacimiento))
+            alert(typeof(boda))
+
+
+           
+    
+    </script>
+</body>
+</html>

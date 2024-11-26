@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+/*Ejercicio base : usa también función flecha por si acaso
+
+    El método de sort es para array */
+    let param=[5,1,9,2,7];
+    let paramOrdenado= param.sort(function(a,b){return a-b});//hacerlo también con función flecha
+    //let paramOrdenado = param.sort((a, b) => a - b);
+    console.log(`El resultado es ${paramOrdenado}`);//Al imprimir en consola saldrá en cadena pero es un array
+
+/*Ejercicio con objetos:  personas que dentro tenga nombre y edad (no podemos usar ahora sort como antes)   
+Tenemos que ordenar por nombre y edad.
+
+*/
+    function transform(){
+    let personas =[
+            {nombre:'Jordi', edad:28},
+            {nombre:'Andrea', edad:32},
+            {nombre:'Ilya', edad: 32}
+    ];
+    personas.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    console.log("Ordenado por nombre: ");
+    console.log(personas);// Usamos este método para visualizar por consola
+    //console.log(`Ordenado por edad: ${personas}`);} NO SE VISUALIZA EN CONSOLA
+    personas.sort((a, b) => a.edad - b.edad);
+    console.log("Ordenado por edad: ");
+    console.log(personas);}
+    transform();
+    </script>
+
+</body>
+</html>

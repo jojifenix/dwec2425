@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+    /*  Ej 1: (sin arrays)
+    
+    Realiza una aplicación web que solicite una cadena de texto.El programa debe decir cuántas veces ocurre cada 
+    uno de estos patrones sin distinguir mayúsculas y minúsculas."00","101","ABC","HO".Un carácter puede formar parte
+    de más de un patrón encontrado.Por ejemplo: 
+    - En la cadena "000", el patrón "00" aparece dos veces(una empieza en la posición 0 y otra empieza en
+    la posición 1)
+
+    Internamente el programa realizará la cuenta de patrones con una función definida como 
+    
+                        function numeroPatrones(texto) 
+    que devolverá un número entero con el número de patrones encontrados.Ejemplo del profe: 
+
+
+      
+
+        Ej2: 
+    
+    
+    Ahora vamos  hacer una mejora (dónde el usuario ponga un texto y el patrón que quiere)
+             - Usamos arrays , for in, for of...
+
+    */
+   
+
+        const frase = prompt("Escribe un texto :");
+        console.time();
+            if (frase) {
+                const resultado = numeroPatrones(frase);
+                alert("Patrones: " + resultado +"\nCadena: "+frase);
+                //console.log("Patrones: " + resultado +"\nCadena: "+frase) -> de esta forma el tiempo de ejecución es más rápido
+            } else {
+                alert("No hay ningún texto.");
+            }
+       
+        function numeroPatrones(frase) {
+            frase = frase.toLowerCase();//usamos método a minúsculas para evitar distintos tipos de letra.
+            let totalPatrones = 0;//contador total de patrones
+            
+            // "00"
+            let pos = frase.indexOf("00");
+            while (pos !== -1) {
+                totalPatrones++;
+                pos = frase.indexOf("00", pos + 1); 
+            }
+            // "101"
+            pos = frase.indexOf("101");
+            while (pos !== -1) {
+                totalPatrones++;
+                pos = frase.indexOf("101", pos + 1);
+            }
+            // "abc"
+            pos = frase.indexOf("abc");
+            while (pos !== -1) {
+                totalPatrones++;
+                pos = frase.indexOf("abc", pos + 1);
+            }
+            // "ho"
+            pos = frase.indexOf("ho");
+            while (pos !== -1) {
+                totalPatrones++;
+                pos = frase.indexOf("ho", pos + 1);
+            }
+            return totalPatrones;
+        }
+    console.timeEnd();/*si usamos console.logs saldrá más rápido el tiempo de ejecución ya que no interactúa
+                    con el usuario*/
+       
+    </script>
+</body>
+</html>

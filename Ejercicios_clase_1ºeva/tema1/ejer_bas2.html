@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--Media y suma hasta meter número negativo-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio2</title>
+</head>
+<body>
+    
+    <script>
+
+
+    function ObtenerSuma(suma = 0, cont = 0) {
+        let num = Number(prompt("Introduce un número, siendo el negativo el que sirve para acabar: "));
+        if (num >= 0) {
+            suma += num;
+            cont++;
+            ObtenerSuma(suma, cont);
+        } else {
+            console.log("La suma es: " + suma);
+            window.alert("La suma es: " + suma);
+            media(suma, cont); 
+        }
+    }
+//arguments funciona como array que acumula excesos de valores.No en este caso ya que el valor que introducimos sustituye donde se guarda el antiguo.
+    function media(suma, cont) {
+        if (cont > 0) {
+            console.log("La media es: " + suma / cont);
+            window.alert("La media es: " + suma / cont);
+        } else {
+            console.log("No se han introducido números positivos.");
+            window.alert("No se han introducido números positivos.");
+        }
+    }
+
+    ObtenerSuma();
+
+
+
+    </script>
+</body>
+</html>

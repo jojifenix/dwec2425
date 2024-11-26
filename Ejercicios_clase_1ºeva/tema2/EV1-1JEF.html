@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- Entregar dos ficheros html(uno por cada ejercicio)
+También un fichero pdf con el mismo documento del enunciado escribiendo nuestro nombre y pantallazos de los resultados 
+de los dos ejercicios (nombre documento JEF)-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio1</title>
+</head>
+<body>
+    <p id="camino"></p>
+    <script>
+        /*
+        Crea una función tal que, proporcionándole el tiempo del que dispones en minutos, 
+        obtenga una cadena de letras (tantas como minutos dispongas) que te permitirá pasear 
+        y volver al punto inicial exactamente en los minutos introducidos (¡no quieres ni 
+        llegar temprano ni retrasarte!).
+        
+        Datos:
+        -Proporcionas un número(tiempo)
+        -Resultado: 'n','s','o','e'(secuencia)
+               duración de cada letra 1 minuto
+        -Cada manzana es 1 minuto
+        */ 
+
+
+        function ejecutaPasos(minutos) {
+            // Validación de datos en el rango
+            if (minutos < 8 || minutos > 22 || minutos % 2 !== 0) { 
+                throw new Error("El número de minutos debe ser un valor par entre 8 y 22.");
+            }
+            
+            // Coordenadas iniciales 
+            let x = 0;  // Eje este-oeste
+            let y = 0;  // Eje norte-sur
+            const direcciones = [];
+            const opciones = ['n', 's', 'e', 'o'];
+        
+            // Función auxiliar para dirección y coordenadas 
+            function agregarDireccion(dir) {
+                direcciones.push(dir);
+                if (dir === 'n') y++;
+                if (dir === 's') y--;
+                if (dir === 'e') x++;
+                if (dir === 'o') x--;
+            }
+        
+            // Generar el paseo
+            for (let i = 0; i < minutos; i++) {
+                let dir;
+                if (i === minutos - 1) {
+                    // Ultimo movimiento llega hasta el principio
+                    if (x > 0) dir = 'o';
+                    else if (x < 0) dir = 'e';
+                    else if (y > 0) dir = 's';
+                    else if (y < 0) dir = 'n';
+                } else {
+                    // Elegimos una dirección random(aleatoria)
+                    do {
+                        dir = opciones[Math.floor(Math.random() * opciones.length)];
+                    } while (
+                        (dir === 'n' && y + 1 > minutos / 2) ||
+                        (dir === 's' && y - 1 < -minutos / 2) ||
+                        (dir === 'e' && x + 1 > minutos / 2) ||
+                        (dir === 'o' && x - 1 < -minutos / 2)
+                    );
+                }
+                
+                agregarDireccion(dir);
+            }
+        
+            // Verificación del objetivo , llegar al punto del principio
+            if (x === 0 && y === 0) {
+                return direcciones;
+            } else {
+                
+                return ejecutaPasos(minutos);
+                //en caso de error(fallo) volvemos a ejecutar
+            }
+        }
+        
+    document.getElementById("camino").innerHTML=ejecutaPasos(14).join('') 
+     
+  
+         </script>
+    </body>
+</html>
+

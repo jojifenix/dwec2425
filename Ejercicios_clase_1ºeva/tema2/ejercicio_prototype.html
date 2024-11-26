@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo_prototype</title>
+</head>
+
+<body>
+    <h1>Explicación del Prototype</h1>
+    <p id="demo"></p>
+    <script>
+
+        function persona(nombre, apellido, edad, ojos) {
+            this.nombre = nom;
+            this.apellido = apellido;
+            this.ojos = ojos;
+        } 
+
+        const miPadre = new persona("Juan", "García", "azul");
+        const miMadre = new persona("Amparo", "López", "verde");
+
+        persona.prototype.nacionalidad = "española";//método que me permite en un momento determinado funcionar como un objeto con sus propiedades
+        document.getElementById("demo").innerHTML = "La nacionalidad de mi padre es " + miPadre.nacionalidad;
+
+    </script>
+</body>
+
+</html>

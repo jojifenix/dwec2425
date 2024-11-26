@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Recorrido de un array</h3>
+    <p id="escribeaqui"></p>    
+        <script>
+            let txt=" ";
+            let txt2=" ";
+            var dias=['lunes','martes','miercoles','jueves','viernes'];
+            dias.forEach(mostrar);
+            function mostrar(valor,index,array){
+                txt= txt +valor +" ";
+            }
+            document.getElementById("escribeaqui").innerHTML=txt;
+
+
+            for(var i=0;longitud=dias.length, i<longitud;i++){
+                txt2=txt2+dias[i]+"--";
+            }
+            document.getElementById("escribeaqui").innerHTML+=txt2;
+            /*solo sale escrita la segunda porque se han escrito ambas en el mismo párrafo
+            .La solución es escribir +=txt2  */
+        </script>
+</body>
+</html>

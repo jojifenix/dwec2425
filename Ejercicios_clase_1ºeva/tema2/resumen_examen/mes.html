@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes del Año</title>
+</head>
+<body>
+    <script>
+
+        var meses = [
+            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 
+            'Junio', 'Julio', 'Agosto', 'Septiembre', 
+            'Octubre', 'Noviembre', 'Diciembre'
+        ];
+
+        function mes(dato) {
+            var numero = parseInt(dato);
+            if (isNaN(numero) || numero < 1 || numero > 12) {
+                throw new Error("El número debe estar entre 1 y 12."); // Lanzar un error si el número es inválido
+            }
+            return meses[numero - 1]; // Retornar el mes correspondiente
+
+        try {
+            var dato = prompt("Introduce un número del 1 al 12: "); // Entrada del usuario
+            var resultado = mes(dato); // Llamar a la función para obtener el mes
+            alert("El mes correspondiente es: " + resultado); // Mostrar el resultado
+        } catch (err) {
+            alert("Error: " + err.message); // Mostrar mensaje de error
+        }}
+    </script>
+</body>
+</html>

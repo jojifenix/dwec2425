@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio2</title>
+</head>
+<body>
+    <p id="imagen" align="center"></p>
+    <script>
+        /*
+        Haz un programa en JavaScript que dibuje una pirámide invertida utilizando los números 
+        del 1 al número que indique el usuario (máximo 50), de tal forma que la primera línea 
+        contenga tantos números repetidos como el número introducido y vaya disminuyendo en una 
+        unidad en cada salto de línea. Las cifras estarán centradas en la pantalla en la medida 
+        de lo posible.Simula el resultado si el número indicado es 22 y añade una captura del 
+        resultado obtenido por pantalla.
+        */
+
+        //función de usuario
+        function usuarioCifras() {
+            let texto;
+            do {
+                texto = Number(prompt("Introduce un número que oscile entre 1 y 50: "));
+            } while (isNaN(texto) || texto < 1 || texto > 50);
+            console.log("Número introducido: " + texto);
+            return texto;
+        }
+        
+        let numeroIntro = usuarioCifras();//variable que guarda el resultado de la función que es el return
+        let piramide = ""; //variable que guarda la pirámide
+        
+        //PIRÁMIDE INVERTIDA
+
+        for (let i = numeroIntro; i >= 1; i--) {
+            /*con operador " -- "" conseguimos que cada iteración se haga con un valor de i menor en una 
+            unidad al anterior*/
+            let fila = "";
+            for (let j = 0; j < i; j++) {
+                fila += i + " "; 
+                /*este bucle realiza la iteración tantas veces como el número introducido por pantalla
+                pintando en pantalla ese número el número de veces que representa. Cuando el bucle
+                padre por encima de este, baje su número en su iteración ,este bucle hijo se actualiza con 
+                ese número nuevo realizando el mismo proceso de pintar por pantalla.
+                */
+            }
+            piramide += fila.trim() + "\n" + "<br/>"
+            /*En esta variable guardamos los resultados de cada fila, por eso usamos el operador +=
+            que lo que hace es piramide=piramide + fila.trim(), consiguiendo así no perder ninguna fila, 
+            si no acumularlas y poder pintar al final por pantalla todas las filas(introducimos el salto
+            con \n para que cada fila vaya en su linea correspondiente)
+
+            */
+            document.getElementById("imagen").innerHTML=piramide
+            /*con este comando podemos escribir el valor dentro de la etiqueta que tenga como 
+            identificador el id"imagen"*/
+        }
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

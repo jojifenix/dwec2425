@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cajero automatico</title>
+</head>
+<body>
+    <h1>CAJERO AUTOMÁTICO</h1>
+    <p>Introduzca la cantidad que quiere sacar</p>
+    <input id="demo" type="text">
+    <button type="button" onclick="retirar()">Retirar</button>
+    <p id="p01"></p>
+
+    <script>
+        /*Simulación que hay saldo.Ponemos queremos sacar 50 euros y ver si tenemos.
+        Si hay saldo nos lo da y descuenta claro
+        Pero si no hay saldo nos dice que no hay saldo
+        
+        
+        1) Con operador ternario
+        2) Con errores try catch y función*/
+
+    /*
+    
+    //1) Saldo es fijo .Informar si hay saldo para retirar la cantidad que ponemos en pantalla.Solo usar oper_tern 
+
+        function cajero(){
+        const mensaje=document.getElementById("p01")
+        mensaje.innerHTML=""
+        let dinero=document.getElementById("demo").value
+        let puedeRetirar=(dinero<100)? "Se puede retirar":"No hay dinero suficiente";
+        alert(puedeRetirar)}
+        
+    */
+
+    //2) Saldo fijo.Informar con try catch  la cantidad que queremos retirar por pantalla.(mejora podemos introducir por pantalla el saldo la primera vez)
+        
+        function retirar(saldo,cantidad){
+            saldo=100
+            if(saldo<cantidad){
+                throw "saldo insuficiente"
+            }
+            return saldo -cantidad
+        }
+
+        try{
+            saldo= retirar(saldo,cantidad)
+        }catch(err){
+            alert(err)
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    </script>
+</body>
+</html>

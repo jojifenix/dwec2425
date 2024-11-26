@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--Juego: adivina un número contesta con "Es mayor" o "Es menor"
+Cuenta los intentos
+Math.ceil(Math.random()*100);
+
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina un número</title>
+</head>
+<body>
+    <script>
+        let num=prompt("Introduce un número del 1 al 100");
+        let buscado=Math.ceil(Math.random()*100);
+        if(num>buscado){
+            window.alert("El número es menor");
+        }else{
+            window.alert("El número es mayor");
+        }
+
+        
+    </script>
+</body>
+</html>

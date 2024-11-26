@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/*
+Solicitar una frase desde teclado, almacenar cada palabra en un elemento de un array y mostrar los siguientes datos:
+•	La primera palabra de la frase.
+•	La última palabra de la frase.
+•	El número de palabras de la frase.
+
+-> Mejora: hacer también un ciclo que consiga seguir preguntando después si se quiere actualizar(añadir) la frase hasta que 
+se escriba algo para pararlo.Tipo: ¿quiere meter otra frase? y seguir asi hasta que yo le diga que pare
+
+Podemos poner console.time()
+
+-> Otra mejora podemos hacer es que nos muestre el resultado con una frase y después nos pregunte si queremos otra frase 
+y asi mostrar el resultado acumulado.
+
+-> Otra mejora es devolver la frase pero ordenadas alfabéticamente 
+*/
+
+
+function solicitarFrase(){
+    let usuario= prompt("Introduce una frase"); 
+    return usuario.split(" ");//Dividir la frase en palabras
+};
+
+function mostrarDatos(fraseArray){
+    console.log("Primera palabra: " + fraseArray[0]);//NO PODEMOS USAR + EN EXAMEN SOLO TEMPLATE LITERAL
+    console.log("Ultima palabra: " + fraseArray[fraseArray.length -1]);
+    console.log("Número de palabras: " + fraseArray.length);
+
+};
+
+let fraseArray = solicitarFrase();//Llamar a la función para obtener el array
+mostarDatos(fraseArray);//Mostrar los datos de la frase
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let todasLasPalabras = []; // Array para almacenar todas las palabras
+
+while (true) {
+    let introducido = prompt("Introduzca un texto (o escriba 'no' para finalizar):"); // Solicita el texto al usuario
+    
+    if (introducido.toLowerCase() === "no") { // Comprueba si el usuario quiere finalizar
+        break; // Sale del bucle si el usuario escribe 'no'
+    }
+    
+    let palabras = introducido.split(" "); // Divide el texto en palabras
+    todasLasPalabras = todasLasPalabras.concat(palabras); // Añade las palabras al array total
+}
+
+if (todasLasPalabras.length > 0) {
+    document.write("El array de todas las palabras es: " + todasLasPalabras + "<br>");
+    document.write("La primera palabra es: " + todasLasPalabras[0] + "<br>"); // Muestra la primera palabra
+    document.write("La última palabra es: " + todasLasPalabras[todasLasPalabras.length - 1] + "<br>"); // Muestra la última palabra
+    document.write("El número total de palabras de todas las frases: " + todasLasPalabras.length + "<br>"); // Muestra el número total de palabras
+} else {
+    document.write("No se introdujeron frases."); // Mensaje si no se introdujo ninguna frase
+}
+
+ 
+ 
+ 
+ </script>
+</body>
+</html>

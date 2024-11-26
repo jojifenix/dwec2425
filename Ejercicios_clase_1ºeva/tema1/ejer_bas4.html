@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--4. Muestra los números impares entre dos introducidos por el usuario
+Intentarlo con while también-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+</head>
+<body>
+    <h1>Números Impares entre dos valores</h1>
+    <script>
+   
+        let num1 = parseInt(prompt("Introduce el primer número:"));
+        let num2 = parseInt(prompt("Introduce el segundo número:"));
+        if (!isNaN(num1) && !isNaN(num2)) {
+            let inicio = Math.min(num1, num2);
+            let final = Math.max(num1, num2);
+            let resultado = "";
+            for (let i = start + 1; i < end; i++) {
+                if (i % 2 !== 0) { /*Comprobar si el número es impar y también buscar la solución donde 
+                    aumentamos el contador en 2 unidades para no preguntar a cada número*/
+                    resultado += i + " ";
+                    
+
+                }
+            }
+            if (resultado) {alert("Los números impares entre " + num1 + " y " + num2 + " son: " + resultado);
+            } else {alert("No hay números impares entre " + num1 + " y " + num2);}
+        } else {alert("Por favor, introduce números válidos.");}
+    </script>
+</body>
+</html>

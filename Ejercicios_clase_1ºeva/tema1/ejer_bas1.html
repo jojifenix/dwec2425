@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--Programa que pida dos números y nos diga cuál es el mayor, el 
+menor o si son iguales. Si no son números o son menores que cero, 
+que lo vuelva a pedir-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio1</title>
+</head>
+<body>
+    
+    <script>
+
+//Introducimos por pantalla los números
+
+let numero1 = solicitarNumero("Introduce el primer número:");
+let numero2 = solicitarNumero("Introduce el segundo número:");
+
+function solicitarNumero(mensaje) {
+    let numero;
+    while (true) {
+        numero = prompt(mensaje); 
+        numero = Number(numero);  
+
+        if (!isNaN(numero) && numero >= 0) {
+            return numero; 
+        }
+        alert("Por favor, introduce un número válido mayor o igual a cero.");
+    }
+}
+
+//Analizamos que numero es menor y mayor , los decimos ( se hace con un if)
+
+if (numero1 > numero2) {
+    alert("El primer número (" + numero1 + ") es mayor que el segundo número (" + numero2 + ").");
+} else if (numero1 < numero2) {
+    alert("El primer número (" + numero1 + ") es menor que el segundo número (" + numero2 + ").");
+} else {
+    alert("Ambos números son iguales.");
+}
+
+
+    </script>
+</body>
+</html>

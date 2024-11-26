@@ -1,5 +1,5 @@
 function dibujarTableroHTML() {
-    // Solicitar el tamaño de filas y columnas
+    // Filas y columnas
     let filas = parseInt(prompt("Dime el tamaño de filas:"));
     let columnas = filas
     

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--3. Muestra los números entre dos introducidos por el usuario-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+    <h1>Números entre dos valores</h1>
+    <script>
+        // Solicita los números
+        let num1 = parseInt(prompt("Introduce el primer número:"));
+        let num2 = parseInt(prompt("Introduce el segundo número:"));
+        // Comprobar si los números son válidos
+        if (!isNaN(num1) && !isNaN(num2)) {
+            let inicio = Math.min(num1, num2);
+            let final = Math.max(num1, num2);
+            let resultado = "";
+            // Mostrar los números entre num1 y num2
+            for (let i = inicio + 1; i < final; i++) {
+                resultado += i + " , ";}
+            // Mostrar el resultado
+            if (resultado) {alert("Los números entre " + num1 + " y " + num2 + " son: " + resultado);
+            } else { alert("No hay números entre " + num1 + " y " + num2);}
+        } else {
+            alert("Por favor, introduce números válidos.");
+        }
+    </script>
+</body>
+</html>
