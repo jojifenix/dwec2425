@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Mirar apuntes para completar -->
+    <a href="http://www.google.com" onclick="return preguntar()">pulsa</a>
+
+
+    <!--
+    
+    <h1>Modelo eventos en línea</h1>
+             
+         h3#cab1 crea la etiqueta con su id
+         This nos sirve para referirnos a nuestra propia cabecera
+
+    PRIMER MODO
+    <h3 id="cab1" onclick="this.innerHTML='javaScript en XHTML'" onmouseover="this.style.background='red'" 
+    onmouseout="this.style.background='white'">Pulsa</h3>
+
+    CON FUNCIONES
+    
+    <h3 onclick="cambiar(this)">Pulsa aquí</h3>
+    <script>
+        function cambiar(elem){
+            elem.innerHTML="Con función externa!!!!"
+        }
+    <script>
+    -->
+
+
+
+    <script>
+    function preguntar(){
+        return confirm("¿Deseas ir a google?");
+    }
+    </script>
+</body>
+</html>
