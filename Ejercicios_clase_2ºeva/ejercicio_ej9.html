@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--Desestructuración copia referencia y la verdadera-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const user={
+            name:"Otto",
+            role:"arquero",
+            life:99,
+            features:["learn","code","paint"]
+        }
+
+       /*La copia por referencia
+       
+        const fullUser={
+            ...user,
+            power:25,
+            life:50
+        }
+         
+        
+        fullUser.features[0]="program";
+        console.log(user.features);
+        console.log(fullUser.features);
+
+        */
+
+
+        //Copia de verdad
+        const fullUser={
+            ...structuredClone(user),
+            power:25,
+            life:50
+        }
+ 
+        fullUser.features[0]="program";
+        console.log(user.features);
+        console.log(fullUser.features);
+        
+
+    </script>
+</body>
+</html>
