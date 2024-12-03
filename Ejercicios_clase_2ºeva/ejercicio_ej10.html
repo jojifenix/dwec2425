@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--Desestructuración, rest y métodos de objeto-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        const user={
+            name:"Otto",
+            role:"arquero",
+            life:99,
+            features:["learn","code","paint"]
+        }
+
+        const{name,...rest}=user;//rest
+
+        console.log(name);
+        console.log(rest);
+        
+
+        //métodos de object
+
+       console.log(Object.keys(user));//devuelve el array de los índices del iterable(en una cadena--nº de letras)
+       console.log(Object.values(user));//devuelve array de los contenidos del iterable
+       console.log(Object.entries(user));//devuelve array de los pares claves: valor
+       
+    </script>
+</body>
+</html>
