@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--Programación funcional y método filter-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Usamos filter en vez de for e if 
+        let arrayNotas=[2,5,7,1,4,6]
+        let arrayAprobados= arrayNotas.filter(superarCurso)
+        function superarCurso(ArrayNota){
+            return ArrayNota >= 5;
+        }
+        console.log(arrayAprobados);
+        //Ahora con una función flecha
+        let arrayAprobadosFlecha = arrayNotas.filter(nota => nota >= 5);
+        console.log(arrayAprobadosFlecha);
+
+
+
+    </script>
+</body>
+</html>
