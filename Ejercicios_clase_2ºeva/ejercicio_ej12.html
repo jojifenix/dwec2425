@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--Uso de set y arrays-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Unir los 3 arrays en un solo elimnando los elementos duplicados
+        let miArray1=[1,2,3,4,5,6,7,8]
+        let miArray2=[1,2,3,8,9,0,43,45,65]
+        let miArray3=[17,32,87,45]
+
+        // 1)Unión de los 3 pero con elementos repetidos
+        let miArray4=[...miArray1,...miArray2,...miArray3]
+        console.log(miArray4)
+
+        let miArray5= new Set(miArray4);
+        console.log(miArray5)
+
+        let miArray6=[...miArray5]
+        console.log(miArray6)
+
+        //Manera más eficaz en una sola línea.
+ 
+        let miArrayUnido= [...new Set([...miArray1,...miArray2,...miArray3])]
+        console.log(miArrayUnido)
+        console.log(miArrayUnido instanceof Array)
+
+    </script>
+</body>
+</html>
