@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <p id="temporizador"></p>
+
+
+
+    <script>
+
+        /*
+
+        //EJERCICIO: Dado el array de los dias de la semana , dame los dias de la semana que empiezan por M 
+        let arrayDias=["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
+        let resultado = arrayDias.filter(empiezaM);
+        function empiezaM(dia){
+            return dia[0] === "M";//comprueba que el primer caracter de cada elemento empieza por M
+        }
+
+
+
+
+
+        //EJERCICIO: Temporizador ( 60 s) , al final de el resultado un alert que nos diga la respuesta del ejercicio anterior
+        <button onclick="activar()">Pulsar</button>
+        
+        function activar(){
+
+            let segundos=60;
+            let temporizador= setInterval(()=>{
+                document.getElementById("temporizador").innerHTML=segundos
+                segundos--;
+
+                if(segundos==-1){
+                    clearInterval(temporizador);
+                    
+
+                }
+            },1000);
+        }
+        */
+
+
+
+
+        /*EJERCICIO: Dada la lista de números:
+        const numeros = [1, 2, 3, 4, 5, 6, 3, 7, 7];
+        Usar map, filter y reduce para obtener los dobles de los elementos del array, obtener los pares y la suma de todos los impares
+        */
+     
+
+        const numeros=[1,2,3,4,5,6,3,7,7];
+        let dobles = numeros.map(function(num){return num*2});
+        alert(dobles);
+        let pares = numeros.filter(function(num){return num%2==0});
+        alert(pares);
+        let sumaImpar = numeros.reduce(function(a,b){return a + b })
+        alert(sumaImpar)
+
+
+
+        /*Enunciado del problema:
+        Se tiene una lista de usuarios con la siguiente estructura:
+        const usuarios = [
+            { id: 1, nombre: 'Juan', edad: 25 },
+            { id: 2, nombre: 'María', edad: 30 },
+            { id: 3, nombre: 'Pedro', edad: 20 },
+            { id: 4, nombre: 'Ana', edad: 35 },
+                        ];
+
+        Se requiere:
+
+        Filtrar los usuarios mayores de 25 años.
+        Duplicar la edad de esos usuarios filtrados.
+        Obtener la suma total de las edades duplicadas.
+        */
+
+        const usuarios=[
+
+            {id:1, nombre:'Juan', edad:25 },
+            {id:2, nombre:'María', edad:30 },
+            {id: 3, nombre: 'Pedro', edad: 20 },
+            {id: 4, nombre: 'Ana', edad: 35 },
+        ]
+
+        let mayores = usuarios.filter(usuario=>usuario.edad>=25);
+        alert(mayores)
+        console.log(mayores)
+        let duplicar= mayores.map(mayore=>mayore.edad*2)
+        alert(duplicar)
+        console.log(doble)
+        let sumatorio= duplicar.reduce(duplica=>duplica.edad)
+
+
+
+
+    </script>
+</body>
+</html>
