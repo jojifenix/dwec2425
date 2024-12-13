@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- Trata de organizar el código de tu programa (¿quitando switch?) usando funciones. 
+Define y llama a tres funciones en los lugares apropiados: 
+
+• showContact: la función debe tomar dos argumentos; el primero es la lista de 
+contactos y el segundo es el número de índice del contacto a mostrar; dentro de 
+la función, verifica si se pasan los argumentos correctos, es decir, si los contactos 
+son un array (utiliza la construcción instanceofArray para esto). 
+
+• showAllContacts: la función debe tomar un argumento, la lista de contactos; 
+dentro de la función, verifica si el argumento dado es un array. 
+
+• addNewContact: la función debe tomar cuatro argumentos, una lista de 
+contactos y los datos del nuevo contacto, es decir: nombre, teléfono y número; 
+antes de agregar un nuevo contacto, verifica si el argumento pasado es un array 
+y si los datos del nuevo contacto tienen algún valor.
+
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio6</title>
+</head>
+<body>
+    <script>
+         let contactos=[
+            {nom:"Juan Pérez" , tel:"1234 567 890" , corr:"juan.perez@example.com"},
+            {nom:"Ana Gómez" , tel:"2345 678 901" , corr:"ana.gomez@example.com"},
+            {nom:"Luis Torres" , tel:"3456 789 012" , corr:"luis.torres@example.com"}
+        ]
+        contactos.push({nom:"Maisie Haley" , tel:"0913 531 3030" , corr:"risus.Quisque@urna.ca"})
+
+        function mostrarContacto(lista, indice) {
+            if (contactos instanceof Array && contactos[indice]) {
+                console.log(`${contactos[indice].nom} / ${contactos[indice].tel} / ${contactos[indice].corr}`);
+            } else {
+                console.log("El índice no es válido o la lista no es un array.");
+            }
+        }
+
+        function mostrarTodosContactos(lista) {
+            if (contacto instanceof Array) {
+                contactos.forEach((contacto, index) => console.log(`${index + 1}. ${contacto.nom} / ${contacto.tel} / ${contacto.corr}`));
+            } else {
+                console.log("El argumento no es un array.");
+            }
+        }
+
+        function agregarNuevoContacto(contactos, usuarioNom , ususarioTel , usuarioCorr) {
+            if (contactos instanceof Array && usuarioNom && ususarioTel && usuarioCorr) {
+                contactos.push({nom:usuarioNom , tel:usuarioTel , corr:usuarioCorr});
+                console.log("Contacto agregado correctamente.");
+            } else {
+                console.log("No se pudo agregar el contacto. Verifica los datos.");
+            }
+        }
+    </script>
+</body>
+</html>
