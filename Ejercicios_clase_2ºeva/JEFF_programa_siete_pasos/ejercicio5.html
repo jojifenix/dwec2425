@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--Encierra todo el programa en un bucle para que al usuario se le pregunte 
+repetidamente qué quiere hacer. El usuario puede optar por: 
+• Mostrar el primer contacto (primero) 
+• Mostrar el último contacto (último) 
+• Mostrar todos los contactos (todos) 
+• Añadir un nuevo contacto (nuevo) 
+• Salir del programa (salir) 
+Después de ejecutar la acción seleccionada, el programa le dará la oportunidad de elegir 
+nuevamente. El programa debe finalizar las acciones solo después de que el usuario dé 
+un comando específico (salir).   -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio5</title>
+</head>
+<body>
+    <script> 
+    
+    
+        let contactos=[
+            {nom:"Juan Pérez" , tel:"1234 567 890" , corr:"juan.perez@example.com"},
+            {nom:"Ana Gómez" , tel:"2345 678 901" , corr:"ana.gomez@example.com"},
+            {nom:"Luis Torres" , tel:"3456 789 012" , corr:"luis.torres@example.com"}
+        ]
+        contactos.push({nom:"Maisie Haley" , tel:"0913 531 3030" , corr:"risus.Quisque@urna.ca"})
+        while (true) {
+            let accion = prompt(`Elige una acción:\n1. Primer contacto\n2. Último contacto\n3. Todos los contactos\n4. Agregar nuevo contacto\n5. Salir`);
+            if (accion === '5') break;
+
+            switch(accion) {
+                case '1':
+                    console.log(`Primer contacto: ${contactos[0].nom} / ${contactos[0].tel} / ${contactos[0].corr}`);
+                    break;
+                case '2':
+                    console.log(`Último contacto: ${contactos[contactos.length - 1].nom} / ${contactos[contactos.length - 1].tel} / ${contactos[contactos.length - 1].corr  }`);
+                    break;
+                case '3':
+                    contactos.forEach((contacto, index) => console.log(`${index + 1}. ${contacto.nombre} / ${contacto.telefono} / ${contacto.correo}`));
+                    break;
+                case '4':
+                    let usuarioNom=prompt("Introduce el nombre del nuevo contacto: ")
+                    let usuarioTel=prompt("Introduce el teléfono del nuevo contacto: ")
+                    let usuarioCorr=prompt("Introduce el correo electrónico del nuevo contacto: ")
+
+                    if(usuarioNom && ususarioTel && usuarioCorr){
+                        contactos.push({nom:usuarioNom , tel:usuarioTel , corr:usuarioCorr})
+                    }else{
+                        console.log("No se agregó el contacto correctamente, faltan datos.Inténtelo de nuevo")
+                    }break;
+                default:
+                    console.log("Opción no válida.");
+            }
+        }
+    </script>
+</body>
+</html>
