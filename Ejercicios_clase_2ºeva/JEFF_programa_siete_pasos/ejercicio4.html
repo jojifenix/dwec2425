@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--Modifica el programa para que el usuario pueda elegir lo que quiere hacer con la 
+lista. Las opciones serán: 
+• Mostrar el primer contacto (primero) 
+• Mostrar el último contacto (último) 
+• Añadir un nuevo contacto (nuevo) 
+
+
+Al agregar un nuevo contacto, verifica si el usuario ha ingresado todos los datos 
+necesarios. Si falta al menos uno de los tres valores (nombre, teléfono o correo 
+electrónico), no se agrega el contacto. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio4</title>
+</head>
+<body>
+    <script>
+        let contactos=[
+            {nom:"Juan Pérez" , tel:"1234 567 890" , corr:"juan.perez@example.com"},
+            {nom:"Ana Gómez" , tel:"2345 678 901" , corr:"ana.gomez@example.com"},
+            {nom:"Luis Torres" , tel:"3456 789 012" , corr:"luis.torres@example.com"}
+        ]
+        contactos.push({nom:"Maisie Haley" , tel:"0913 531 3030" , corr:"risus.Quisque@urna.ca"})
+        //Creamos una función de menú
+        function menuOpciones(){
+            let opcion=prompt(`Elige la opción que prefieras:\n1. Primer contacto\n2. Último contacto\n3. Nuevo contacto`)
+
+            switch(opcion){
+                case "1":
+                    console.log(`El primer contacto: ${contactos[0]}`);
+                case "2":
+                    console.log(`El último contacto: ${contactos[contactos.length-1]}`);
+                case "3":
+
+                    let usuarioNom=prompt("Introduce el nombre del nuevo contacto: ")
+                    let usuarioTel=prompt("Introduce el teléfono del nuevo contacto: ")
+                    let usuarioCorr=prompt("Introduce el correo electrónico del nuevo contacto: ")
+
+                    if(usuarioNom && ususarioTel && usuarioCorr){
+                        contactos.push({nom:usuarioNom , tel:usuarioTel , corr:usuarioCorr})
+                    }else{
+                        console.log("No se agregó el contacto correctamente, faltan datos.Inténtelo de nuevo")
+                    }break;
+                default:
+                    console.log("Opción no válida");
+            }
+        }
+
+        menuOpciones();
+    </script>
+</body>
+</html>
