@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- Da al usuario la opción de seleccionar una acción sort de la lista. Cuando se selecciona 
+esta opción, el usuario debería poder especificar si desea ordenar los contactos por 
+nombre, teléfono o correo electrónico. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio7</title>
+</head>
+<body>
+    <script>
+
+         let contactos=[
+            {nom:"Juan Pérez" , tel:"1234 567 890" , corr:"juan.perez@example.com"},
+            {nom:"Ana Gómez" , tel:"2345 678 901" , corr:"ana.gomez@example.com"},
+            {nom:"Luis Torres" , tel:"3456 789 012" , corr:"luis.torres@example.com"}
+        ]
+        contactos.push({nom:"Maisie Haley" , tel:"0913 531 3030" , corr:"risus.Quisque@urna.ca"})
+
+
+        function mostrarContacto(lista, indice) {
+            if (contactos instanceof Array && contactos[indice]) {
+                console.log(`${contactos[indice].nom} / ${contactos[indice].tel} / ${contactos[indice].corr}`);
+            } else {
+                console.log("El índice no es válido o la lista no es un array.");
+            }
+        }
+
+        function mostrarTodosContactos(lista) {
+            if (contactos instanceof Array) {
+                contactos.forEach((contacto, index) => console.log(`${index + 1}. ${contacto.nom} / ${contacto.tel} / ${contacto.corr}`));
+            } else {
+                console.log("El argumento no es un array.");
+            }
+        }
+
+        function agregarNuevoContacto(contactos, usuarioNom , ususarioTel , usuarioCorr) {
+            if (contactos instanceof Array && usuarioNom && ususarioTel && usuarioCorr) {
+                contactos.push({nom:usuarioNom , tel:usuarioTel , corr:usuarioCorr});
+                console.log("Contacto agregado correctamente.");
+            } else {
+                console.log("No se pudo agregar el contacto. Verifica los datos.");
+            }
+        }
+
+        function ordenarContactos(contactos, criterio) {
+            if (contactos instanceof Array && ["nombre", "telefono", "correo"].includes(criterio)) {
+                contactos.sort((a, b) => a[criterio].localeCompare(b[criterio]));
+                console.log(`Contactos ordenados por ${criterio}:`);
+                mostrarTodosContactos(contactos);
+            } else {
+                console.log("Criterio inválido o la lista no es un array.");
+            }
+        }
+
+ 
+        while (true) {
+            let accion = prompt(`Elige una acción:\n1. Mostrar primer contacto\n2. Mostrar último contacto\n3. Mostrar todos los contactos\n4. Agregar nuevo contacto\n5. Ordenar contactos\n6. Salir`);
+            
+            if (accion === '6') break;
+
+            switch(accion) {
+                case '1':
+                    mostrarContacto(contactos, 0);
+                    break;
+                case '2':
+                    mostrarContacto(contactos, contactos.length - 1);
+                    break;
+                case '3':
+                    mostrarTodosContactos(contactos);
+                    break;
+                case '4':
+                    let nombre = prompt("Introduce el nombre del nuevo contacto:");
+                    let telefono = prompt("Introduce el teléfono del nuevo contacto:");
+                    let correo = prompt("Introduce el correo del nuevo contacto:");
+                    agregarNuevoContacto(contactos, usuarioNom , ususarioTel , usuarioCor);
+                    break;
+                case '5':
+                    let criterio = prompt("¿Por qué criterio quieres ordenar? (nombre, telefono, correo)");
+                    ordenarContactos(contactos, criterio);
+                    break;
+                default:
+                    console.log("Opción no válida.");
+            }
+        }
+    </script>
+</body>
+</html>
