@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //De json a objeto
+        const json=`{
+                "name":"Manuel",
+                "life":49
+        
+                    }`;
+        const user= JSON.parse(json);
+
+        console.log(user.name);
+        console.log(user.life);
+        //De objeto a json
+        const user2={
+            name:"Manuel",
+            life:49,
+            talk:function(){
+                return "Hola";
+            },
+        };
+
+        console.log(JSON.stringify(user2));
+        //stringify con segundo parámetro
+        const user3={
+            name:"Manz",
+            life:99,
+            power:10,
+        };
+
+        console.log(JSON.stringify(user3,["life"]))
+        console.log(JSON.stringify(user3,["name"],["power"]))
+        console.log(JSON.stringify(user3,[]))
+        console.log(JSON.stringify(user3,null))
+        //Repasar fetch
+       
+
+
+
+    </script>
+</body>
+</html>
