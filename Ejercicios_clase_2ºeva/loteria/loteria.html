@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotería</title>
+</head>
+<body>
+    <script>
+        /*Elegir dos números de la Lotería de Navidad (recordemos que tienen 5 cifras), con la única condición de que cumplan estos dos requisitos:
+
+        1) Entre los dos números, aparecen todos los dígitos del 0 al 9, necesariamente una vez cada uno.
+        2) La suma de los dos números vuelve a ser un número de lotería, es decir, tiene 5 cifras.
+
+        Por ejemplo, nos valen los números 01357 y 24689, que suman 26046. No nos valen 01357 y 24680, porque se repite el 0 y falta el 9. Tampoco nos valen 70135 y 42689, porque su suma, 112824, tiene 6 cifras.
+
+        Una vez elegidos los dos números, nos quedamos con las parejas que en su suma aparecen, en algún orden y alguna posición, los dígitos 1, 3, 5 y 7. Esto es, llamando X a la quinta cifra, la suma puede tener la forma 1357X, o 5X371, o 75X31, o…
+
+        El desafío consiste en decidir qué valores exactamente puede tomar el dígito X: ¿puede ser cualquiera entre 0 y 9?; ¿pueden aparecer como X unos dígitos sí y otros no?; ¿puede ser que en realidad no aparezca ningún X (no hemos dicho que existan dos números que cumplan todas las condiciones que hemos dado)?
+
+        */
+        console.time("")
+        
+        for (let i = 0; i < 99999; i++) { // primer número de 5 cifras
+            for (let j = 0; j < 99999; j++) { //segundo número de 5 cifras
+                if (digitosUnicos(i) && digitosUnicos(j) && cubrenTodosDigitos(i, j)) {
+                    let suma = i + j;
+                    if (suma < 99999) {
+                        return console.log(`Primera cifra : ${i}`)
+                    }
+                }
+            }
+        }
+
+        function digitosUnicos(num) {
+            const dig = String(num).padStart(5, '0').split(""); // dividimos en dígitos para poder verificar su tamaño después, rellenamos de 0 hasta hacer 5 cifras también
+            const conj = new Set(dig); // no repetidos
+            return conj.size === 5; // comprueba que el tamaño es 5
+        }
+
+        function cubrenTodosDigitos(num1, num2) {
+            const todosDigitos = new Set(String(num1).padStart(5, '0') + String(num2).padStart(5, '0')); // no repetidos la suma
+            return todosDigitos.size === 10; // máximo nº de cifras 10
+        }
+
+        console.timeEnd("")
+    </script>
+</body>
+</html>
