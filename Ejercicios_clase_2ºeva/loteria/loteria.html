@@ -21,17 +21,19 @@
         */
         console.time("")
 
+      
         for (let i = 0; i <= 99999; i++) { // primer número de 5 cifras
             for (let j = 0; j <= 99999; j++) { //segundo número de 5 cifras
-            if (digitosUnicos(i) && digitosUnicos(j) && cubrenTodosDigitos(i, j)) {
-                let suma = i + j;
-                if (suma <= 99999) {
-                const sumaStr = String(suma).padStart(5, '0');
-                if (['1', '3', '5', '7'].every(d => sumaStr.includes(d))) {
-                    console.log(`Primera cifra: ${i}, Segunda cifra: ${j}, Suma: ${sumaStr}`);
+                if (digitosUnicos(i) && digitosUnicos(j) && cubrenTodosDigitos(i, j)) {
+                    let suma = i + j;
+                    if (suma <= 99999) {
+                        const sumaStr = String(suma).padStart(5, '0');
+                        if (['1', '3', '5', '7'].every(d => sumaStr.includes(d))) {
+                            alert(`Primera cifra: ${i}, Segunda cifra: ${j}, Suma: ${sumaStr}`);
+                           
+                        }
+                    }
                 }
-                }
-            }
             }
         }
 
