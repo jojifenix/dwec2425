@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creación de elementos del DOM</title>
+    <style>
+        .miClase{
+            color:red
+        }
+    </style>
+    <script>
+        window.onload=inicio;//Primero cargamos el DOM antes de ejecutar el script
+        function inicio(){
+            document.getElementById("crearParrafo").addEventListener("click",crearParrafo)
+            document.getElementById("crearImagen").addEventListener("click",crearImagen)
+            document.getElementById("borrarUltimo").addEventListener("click",borrarUltimo)
+            document.getElementById("borrarPrimero").addEventListener("click",borrarPrimero)
+            document.getElementById("cambiar").addEventListener("click",cambiar)
+        }
+        function crearParrafo(){
+            var miParrafo=document.createElement("p") //creamos elemento de tipo párrafo y lo asignamos a una variable
+            var texto= document.createTextNode(document.getElementById("texto").value)//asignamos a la variable el valor del textarea
+            miParrafo.appendChild(texto); // introducimos dentro de la variable parrafo el contenido de la variable texto
+            miParrafo.setAttribute("Class","miClase") //Asignamos la clase creada de css a este elemento parrafo
+            var conten= document.getElementById("div1")
+            conten.appendChild(miParrafo);
+        }
+        function crearImagen(){
+            var imagen=document.createElement("img")//creamos el tipo de elemento
+            var ruta=prompt("Introduce la ruta de la imagen")//asociamos la ruta mediante un prompt a la variable
+            imagen.setAttribute("src",ruta) //añadimos el atributo a la variable
+            var contenido=document.getElementById("div1")// creamos una variable asociada al div
+            contendio.appendChild(imagen); //introducimos dentro de la variable asociada al div la imagen
+        }
+        function borrarUltimo(){
+            var caja=document.getElementById("div1")//nos posicionamos  en el padre div
+            var ultimo=caja.lastChild // nos posicionamos en el ultimo hijo , que es el ultimo p
+            caja.removeChild(ultimo)
+        }
+        function borrarPrimero(){
+            var caja=document.getElementById("div1")
+            var primero=caja.firstChild
+            caja.removeChild(primero)
+        }
+        function cambiar(){ //cambiar un elemento que queramos por otro que es un texto que pone "vacio"
+            //1) primer elemento que haya cambiarlo .Aqui abajo hemos cambiado texto por p podemos ver como cambiar tipo p por texto
+
+           /* var caja=document.getElementById("div1")
+            var primero= caja.firstChild
+            var texto=document.createTextNode("vacío")
+            caja.replaceChild(texto, primero);*/
+
+            // 2) Decimos que elemento queremos que cambie
+            var caja=document.getElementById("div1")
+            var posicion=prompt("Introduce la posición del elemento")
+            var texto=document.createTextNode("vacío")
+            caja.replaceChild(texto,caja.childNodes[posicion]) 
+           
+
+
+        }
+    </script>
+</head>
+<body>
+    <div id="div1">
+    </div>
+
+    <br/>
+    <textarea id="texto"></textarea><br/>
+    <button id="crearParrafo">Crear parrafo</button>
+    <button id="crearImagen">CrearImagen</button>
+    <button id="borrarUltimo">BorrarUltimo</button>
+    <button id="borrarPrimero">BorrarPrimero</button>
+    <button id="cambiar">cambiar</button>
+
+   
+    
+</body>
+</html>

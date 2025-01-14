@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio DOM</title>
+    <style>
+        .miClase{
+            color:green;
+        }
+    </style>
+    <script>
+        //window.onload=inicio()
+        window.addEventListener("load",inicio)
+        // Hasta no tener cargado todo no se va a ir a la función inicio.Las dos sentencias de arriba definen lo mismo
+
+        function inicio(){
+            document.getElementById("cambiarTextos").addEventListener("click",cambiarTextos)
+            document.getElementById("cambiarClases").addEventListener("click",cambiarClases)
+            document.getElementById("quitarClases").addEventListener("click",quitarClases)
+            document.getElementById("suspensivos").addEventListener("click",suspensivos)
+
+        }
+
+        function cambiarTextos(){
+            document.getElementById("parrafo1").innerHTML=prompt("Introduce el texto")//primero seleccionados lo que queremos y con innerHTML modificamos
+            document.getElementsByTagName("p")[1].innerHTML=prompt("Introduce el texto")//como es un array al ser elements necesitamos buscar el párrafo mediante el orden del array seleccionamos la etiqueta "p" y el número de posición
+            document.getElementsByClassName("miclase")[0].innerHTML=prompt("Introduce el texto")
+        }
+
+        /*
+        var principal= document.getElementById("main")
+        var parrafo1 = principal.innerHTML("parrafo1")
+        document.querySelector                            //Para organizarnos mejor podemos usar esta estructura
+        */
+
+        function cambiarClases(){
+           document.getElementById("parrafo1").setAttribute("Class","miClase")
+           document.getElementById("parrafo2").className="miClase" //dos maneras para cambiar la clase
+        }
+        function quitarClases(){
+            /* document.getElementById("parrafo1").setAttribute("Clase","")
+            document.getElementById("parrafo2").className=""
+            document.getElementById("parrafo3").className=""  */
+
+            //Si tenemos mucho parrafos:
+            lineas=document.getElementsByTagName("p")
+            for(var i=0; i < lineas.length ; i++){
+                lineas[i].className=""
+            }
+        }  
+        
+        function suspensivos(){
+            document.getElementById("parrafo1").innerHTML +="..."
+        }//añadimos a un parrafo los puntos suspensivos
+    </script>
+</head>
+<body>
+    <div id="main">
+        <p id="parrafo1">Este es el primero</p>
+        <p id="parrafo2">Este es el segundo</p>
+        <p id="parrafo3" class="miClase">Este es el tercero</p>
+    </div>
+    <br/>
+
+    <button id="cambiarTextos">Cambiar texto de parrafo</button>
+    <button id="cambiarClases">Cambiar clase de parrafo</button>
+    <button id="quitarClases">Quitar clase</button>
+    <button id="suspensivos">Puntos suspensivos</button>
+
+</body>
+</html>
