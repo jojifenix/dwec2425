@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var miParrafo=document.createElement("p","div","img");//crear un elemento
+        var texto= document.createTextNode(ejemplo)//crear el texto(es otro elemento del DOM)
+
+        document.getElementById("texto").value //valor 
+        miParrafo.appendChild(texto) 
+
+        miParrafo.setAttribute("class","")
+        //miParrafo.className=""
+
+        var conten=document.getElementById("div1");
+        conten.appendChild(miParrafo);
+    </script>
+</body>
+</html>
