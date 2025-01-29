@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="style.css"></link>
 </head>
 <body>
-    <p>Datos personales</p>
+    
     <div class="centrar">
         <from id="formulario" method="post">
+        <fieldset>
+        <legend class="left">Datos personales</legend>
              <!--NOMBRE-->
             <label for="nombre">Introduce tu nombre</label>
             <input type="text" id="nombre" name="nombre"/><br><br>
@@ -19,7 +21,7 @@
             <input type="" id="nif" name="nif"/><br><br>
             <!--SELECCIONAR FECHA-->
             <label>Selecciona un curso académico</label>
-            <select>
+            <select id="fechas">
                 <option>2020 - 2021</option>
                 <option>2021 - 2022</option>
                 <option>2022 - 2023</option>
@@ -29,33 +31,40 @@
            
             <br/><br/>
             <!--FECHA MATRICULACION-->
-            <label for="fecha">Introduce la fecha de matriculacion: </label><br/>
+            <label for="fecha">Introduce la fecha de matriculacion: </label><br/><br/>
             <input type="number" id="dia" name="fecha" placeholder="Día"/>
             <input type="number" id="mes" name="fecha" placeholder="Mes"/>
             <input type="number" id="año" name="fecha" placeholder="Año"/><br/><br/>
             
             <!--MENSAJE-->
             <label for="mensaje">Mensaje</label><br>
-            <textarea type="text" cols="70" rows="10" id="mensaje" name="mensaje"></textarea><br/><br/>
+            <textarea type="text" cols="90" rows="10" id="mensaje" name="mensaje"></textarea><br/><br/>
+        </fieldset>
+        <br/>
             <!--COLOR-->
+            
             <label>Elige un color:</label><br/>
             <input type="radio" id="rojo" name="colores"/>Rojo<br/>
             <input type="radio" id="verde" name="colores"/>Verde<br/>
             <input type="radio" id="azul" name="colores"/>Azul<br/>
+            
             <br/><br/>
             <!--SELECCIONA ASIGNATURA-->
+            
             <label>Selecciona una asignatura</label>
             <select>
-                <option>DWES</option>
+                <option >DWES</option>
                 <option>DWEC</option>
                 <option>DIW</option>
                 <option>DAW</option>
                 <option>INGLÉS</option>
                 <option>EMMPRESAS</option>
             </select>
+            
             <br/><br/>
             <!--SELECCIONA LOS DÍAS CON DISPONIBILIDAD-->
-            <label>Selecciona los días con disponibilidad</label><br/>
+            <label>Selecciona los días con disponibilidad</label>&nbsp;&nbsp;<button id="marcar">Todos</button>
+            <br/><br/>
             <input type="checkbox" id="lunes" name="dias"/>Lunes<br/>
             <input type="checkbox" id="martes" name="dias"/>Martes<br/>
             <input type="checkbox" id="miercoles" name="dias" />Miércoles<br/>

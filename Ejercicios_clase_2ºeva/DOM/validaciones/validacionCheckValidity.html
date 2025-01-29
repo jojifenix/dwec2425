@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>check_validity</title>
+    <script src="checkvalidity.js"></script>
+    <style>
+        .error{border:solid 4px red};
+
+    </style>
+</head>
+<body>
+    <h1>Check_validity</h1>
+
+    <form action="" method="post" id="miFormulario">
+        <table>
+            <tr>
+                <td>Nombre*: </td>
+                <td>
+                <input type="text" name="nombre" id="nombre" maxlength="15" pattern="[A-Za-z]{2,15}" title="Introduce entre 2 y 15 letras" required/>
+                <!--Mayusc y minus , minimo y maximo s-->
+                </td>
+            </tr>
+            <tr>
+                <td>Edad*: </td>
+                <td>
+                    <input type="number" name="edad" id="edad" min="18" max="100" required/>
+                </td>
+            </tr>
+            <tr>
+                <td>Telefono*: </td>
+                <td>
+                    <input type="text" name="telefono" id="telefono" pattern="[0-9]{9}" title="Debe introducir los nueve dígitos" required/><!--Lo puede poner tipo number pero lo hemos puesto text para poder ver el otro mensaje -->
+                </td>
+            </tr>
+        </table>
+        <p>
+            <input type="submit" value="Enviar" id="enviar" />
+            <input type="reset" value="Borrar" id="borrar" />
+        </p>
+    </form>
+    <p id="mensajeError"></p>
+</body>
+</html>
