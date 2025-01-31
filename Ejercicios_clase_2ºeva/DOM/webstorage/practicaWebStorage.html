@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="mensaje"></p>
+    <p id="contadorTexto"></p>
+    <button type="" id="aumentar">Aumentar</button>
+    <button type="" id="disminuir">Disminuir</button>
+    <button type="" id="logOut">Log out</button>
+    <script>
+        /*Programa que :
+        - Resuelve si o no: Soporta Storage
+        - Mensaje binevenida con el nombre del usuario diferencia primera vez con las demás
+        - 3 botoenes para aumentar o disminuir un contador: uno aumentar ,otro disminuir y otro para log out
+        */
+   
+
+    if(typeof(Storage)!=="undefined"){// comprueba si soporta Storage
+        alert("Este navegador si soporta Web Storage");
+        if(localStorage.getItem("nombre")==null){
+            let nomUsu=prompt("Introduce tu nombre");  
+            localStorage.setItem("nombre",nomUsu);
+            document.getElementById("mensaje").innerHTML="Bienvenido "+localStorage.getItem("nombre")+" es tu primer vez aquí";
+        }else{
+            document.getElementById("mensaje").innerHTML="Bienvenido "+localStorage.getItem("nombre")+" yo a ti te conozco eh";
+        }
+    }else{
+        alert("No soporta Web Storage este navegador")
+    }
+
+
+
+
+    if(!sessionStorage.getItem("contador")){
+            sessionStorage.setItem("contador",0);
+        }
+    document.getElementById("contadorTexto").innerHTML="Contador : "+sessionStorage.getItem("contador");
+    document.getElementById("aumentar").addEventListener("click",aumentar);
+    document.getElementById("disminuir").addEventListener("click",reducir);
+    document.getElementById("logOut").addEventListener("click",salir);
+
+
+
+    function aumentar(){
+        sessionStorage.setItem("contador",parseInt((sessionStorage.getItem("contador")))+1)
+        document.getElementById("contadorTexto").innerHTML=sessionStorage.getItem("contador");
+    }
+
+    function reducir(){
+
+        sessionStorage.setItem("contador",parseInt((sessionStorage.getItem("contador")))-1)
+        document.getElementById("contadorTexto").innerHTML=sessionStorage.getItem("contador");
+    }
+
+    function salir(){
+        sessionStorage.removeItem("contador")
+        localStorage.removeItem("nombre")
+        document.getElementById("mensaje").innerHTML=localStorage.getItem("nombre");
+        document.getElementById("contadorTexto").innerHTML=sessionStorage.getItem("contador");
+    }
+  
+
+
+
+
+
+    </script>
+</body>
+</html>

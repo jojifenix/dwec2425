@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       
+        if(typeof(Storage)!=="undefined"){
+            alert("Este navegador soporta webStorage");
+            localStorage.setItem("nombre","Juan");//mejor manera
+            localStorage.apellido="García"; //peor manera
+            alert(localStorage.getItem("nombre"));
+            alert(localStorage.apellido);
+
+            localStorage.removeItem("apellido");//borra el apellido 
+            alert(localStorage.getItem("nombre") + " " + localStorage.getItem("apellido"));// sale null la segunda parte porque se ha borrado el apellido
+
+        }else{
+            alert("El navegador no soporta webStorage");
+        }
+       
+
+
+
+    </script>
+</body>
+</html>
