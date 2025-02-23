@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="contenedor">
+        <button id="boton">HAZ CLICK</button>
+        <button id="boton2">HAZ CLICK2</button>
+    </div>
+    <script>
+        document.getElementById("contenedor").addEventListener("click", function() {
+         console.log("Pulsado el div");
+        },/*{capture:true}*/); //con {capture:true} o true empieza a ejecutar eventos desde la fase captura.Si ponemos false o no ponemos nada es false
+        document.getElementById("boton").addEventListener("click", function() {
+        console.log("Pulsado el botón");
+        /*event.stopPropagation(); */ // evitamos que suba y se ejecuten despues de él los de arriba
+        });
+
+        // MISMO OBJETIVO VARIOS ESCUCHADORES
+
+        document.getElementById("boton2").addEventListener("click", function(event) {
+        console.log("Primer evento del botón");
+        event.stopImmediatePropagation(); // Detiene TODOS los eventos en el botón
+        });
+        document.getElementById("boton2").addEventListener("click", function() {
+        console.log("Segundo evento del botón (no se ejecutará)");
+        });
+
+        
+    </script>
+</body>
+</html>

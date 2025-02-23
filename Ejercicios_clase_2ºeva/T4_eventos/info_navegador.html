@@ -32,16 +32,15 @@
                                     /*Elemento screen*/
 
        texto+= "<br/>Ancho: " +screen.width
-       texto+= "<br/>Alto: "  +screen.Height
+       texto+= "<br/>Alto: "  +screen.height
 
        //Tamaño pantalla sin barra de tareas
        texto+= "<br/>Alto sin barra: " +screen.availHeight
        texto+= "<br/>Ancho sin barra: " +screen.availWidth
        //Profundidad de color de la pantalla
        texto+= "<br/>Profundidad color pantalla: " +screen.colorDepth
-      
-       //Resolución de color de en bits por pixel
-       texto+= "<br/>color de en bits por pixel: " + screen.pixelDepth
+    // Resolución de color en bits por píxel
+    texto+= "<br/>Color en bits por píxel: " + screen.pixelDepth
 
        document.getElementById("ejemplo").innerHTML= texto
     

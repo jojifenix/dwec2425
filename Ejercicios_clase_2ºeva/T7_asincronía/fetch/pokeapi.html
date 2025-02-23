@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //probamos 
+        const url= "https://pokeapi.co/api/v2/pokemon?limit=10"
+        async function getPokemonData() {
+            try {
+            const respuesta = await fetch(url);
+            const data = await respuesta.json(); //transforma la info de la api en un json
+            const pokemonUrl = data.results[0].url; // obtenemos la url de un pokemon
+
+            const pokemonRespuesta = await fetch(pokemonUrl); // obtenemos la info de la url del pokemon especifico
+            const pokemonData = await pokemonRespuesta.json(); // transformar la info de esta url en json
+            
+            // nombre, peso ,altura 
+            console.log(`Nombre: ${pokemonData.name}`);
+            console.log(`Peso: ${pokemonData.weight}`);
+            console.log(`Altura: ${pokemonData.height}`);
+            } catch (error) {
+            console.error('Error :', error);
+            }
+        }
+
+        getPokemonData();
+    </script>
+</body>
+</html>

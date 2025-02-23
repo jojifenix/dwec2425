@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--JORDI EDUARDO FLORES FLORES -->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salida de Ciclistas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin-top: 50px;
+        }
+
+        #pantalla {
+            background: white;
+            width: 300px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        #dorsal {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        #cuentaAtras {
+            font-size: 20px;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="pantalla">
+        <h3>Salida de Ciclistas 🚴♂️</h3>
+        <div id="dorsal">Dorsal: </div>
+        <div id="cuentaAtras">Cuenta atrás: </div>
+    </div>
+
+    <script>
+    /*En una prueba contrarreloj, los 10 ciclistas participantes deben salir con una cadencia de 10 segundos en función del dorsal que llevan (el dorsal 1 saldrá 10 segundos después de la hora de salida, el dorsal 2, 10 segundos después del primero… y así sucesivamente . 
+    
+    En un pequeño monitor de su moderna bicicleta, el participante debe ver un mensaje con una cuenta atrás que empieza 5 segundos antes de salir  y la palabra ¡Salida! después de la cuenta atrás para poder salir . 
+    Crea la aplicación salidaCiclistas (que invocará  a una función cuentaAtras) que debe instalar cada participante en el dispositivo de su bicicleta.*/
+
+            salidaCiclista();//Invocamos la función salidaCiclista que realiza el bucle para cada ciclista con la función cuentaAtras, la que nos muestra en pantalla el dorsal y cuenta atrás del ciclista.
+
+            async function salidaCiclista(){ 
+                for(let i=1; i<=10;i++){ //número de ciclistas
+                    await new Promise(resolve=>setTimeout(resolve,5000));//esperamos 5s segundos antes de empezar con el bucle.Con await nos aseguramos que no pase a la siguiente linea de código sin obtener la promesa
+                    await cuentaAtras(i); //con este await no seguirá hasta que la función CuentaAtras devuelva la promesa con dorsal i , entonces seguiremos con el bucle, volviendo a esperar 5s para volver a este await.Nos aseguramos así que haya 5s entre cada ciclista ya que la función cuentaAtrás nos avisa 5s antes de salir con un contador.Asi tenemos un tiempo de 10s entre ciclistas.
+                }
+            }//función que administra las salidas de cada ciclista de manera asíncrona
+            function cuentaAtras(dorsal){
+                return new Promise((resolve)=>{
+                    var cuentaSegundos=5; //iniciamos la cuenta atrás que saldrá en pantalla
+                    var cuentaPantalla=document.getElementById("cuentaAtras");
+                    var dorsalPantalla=document.getElementById("dorsal");
+                    dorsalPantalla.textContent=`Dorsal: ${dorsal}`;//Re escribimos el contenido de la variable dorsalPantalla  la cuál guarda el contenido del elemento con id "dorsal"
+                   
+                    var cuentaFinalAtras=setInterval(()=>{
+                    
+                        cuentaPantalla.textContent = `Cuenta atrás: ${cuentaSegundos}`;
+                        cuentaSegundos--;//Disminuimos en 1 el valor de la cuenta atrás para cuando se repita el intervalo.
+                        if(cuentaSegundos<0){
+                            clearInterval(cuentaFinalAtras);
+                            cuentaPantalla.textContent="¡Salida!🚴";
+                            resolve();//resovemos la promesa ya que hemos conseguido que la cuenta atrás llegue al valor estimado para poder SALIR.
+                        }// Cuando se cumple que no quedan más segundos limpia la pantalla e imprime la SALIDA 
+                    },1000)// Realizamos el intervalo cada segundo dónde imprimimos en pantalla la cuenta atrás.Importante darle una variable al intervalo para poder usar después un clearInterval.
+                })//La promesa está estructurada en un resolve que tiene ciertas condiciones y que cumplicmos al final del código.
+            }//función que realiza la cuenta atrás y dorsal de cada ciclista
+
+
+           
+
+
+
+
+    </script>
+
+</body>
+
+</html>
+
