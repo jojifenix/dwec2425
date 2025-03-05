@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Tipos de datos </title>
+        
+        <style>
+            body{
+                text-align: center;
+            }
+            
+
+            fieldset{
+                width: 50px;
+                padding: 40px;
+                margin: 0 auto;
+            }
+            legend {
+                font-weight: bold;
+            }
+            div{
+                padding: 10px;
+            }
+            input, select{
+                margin: 6px;
+            }
+        </style>
+    </head>
+    <body>
+        <!--
+
+- Añadir un input con el NIF 
+- Añadir un input con la fecha de matriculación (día, mes, año)
+- Añadir un Select con cursos académicos (desde 20-21 a 23-24) con posibilidad de que el usuario añada nuevos cursos académicos.
+- Al menos 5 “asignaturas” del DAW
+- Se debe añadir un checkbox para seleccionar/deseleccionar todos los días con disponibilidad. 
+- Añadir un contador para el campo Mensaje que indique al usuario los caracteres que le quedan antes de llegar al máximo.
+
+-->
+        <form id="formulario">
+            <fieldset>
+                <legend>Datos personales</legend>
+                Introduce tu nombre:<input type="text" name="nombre" ><br/>
+                Introduce tu NIF:<input type="text" name="nif" id="nif"><br/>
+                <p id="msgNIF"></p>
+                Mensaje <br/>
+                <textarea id="mensaje" minlength="2" maxlength="500"></textarea>
+                <p id="contador"></p>
+            </fieldset>
+
+            <div>
+            <br/> Elige un color: <br/>
+            <input type="radio" name="color" value="rojo"> Rojo<br/>
+            <input type="radio" name="color" value="verde">Verde<br/>
+            <input type="radio" name="color" value="azul" checked>Azul<br/>
+            <input type="radio" name="color" value="oscuro">Oscuro<br/>
+            </div>
+
+            <div>
+           Selecciona una asignatura: <br/>
+            <select id="asignatura" >
+                <option>DWEC</option>
+                <option>DWES</option>
+                <option>DIW</option>
+                <option>DAW</option>
+                <option>Empresa</option>
+                <option>Ingles</option>
+            </select> <br/>
+            </div>
+
+            <div>
+            Fecha de matriculación:<br>
+            <input type="date" name="fecha" ><br/>
+            </div>
+
+            <div>
+            Selecciona el curso académico:<br>
+            <select id="cursoAcademico" >
+                <option value="20-21">20-21</option>
+                <option value="21-22">21-22</option>
+                <option value="22-23">22-23</option>
+                <option value="23-24">23-24</option>
+                <option id="añadir" value="añadir">Añadir curso académico</option> <!--Hacerlo en casa-->
+            </select> <br/>
+            </div>
+
+            <div>
+            Selecciona los días con disponibilidad:<br>
+            <input type="checkbox" name="dias" value="lunes" checked>Lunes<br>
+            <input type="checkbox" name="dias" value="martes">Martes<br>
+            <input type="checkbox" name="dias" value="miercoles">Miercoles<br>
+            <input type="checkbox" name="dias" value="jueves">Jueves<br>
+            <input type="checkbox" name="dias" value="viernes">Viernes<br>
+            <input type="checkbox" name="dias" id="todos"> Seleccionar todos</input>
+            <input type="checkbox" name="dias" id="ninguno"> Deseleccionar todos</input>
+            <p id="msgDias"></p>
+        </div>
+
+        <div>
+            Selecciona el día preferente:<br>
+            <select id="diaPreferente" >
+                <option value="lunes">Lunes</option>
+                <option value="martes">Martes</option>
+                <option value="miercoles">Miercoles</option>
+                <option value="jueves">Jueves</option>
+                <option value="viernes">Viernes</option>
+            </select> <br/>
+           
+        </div>
+        <div>
+            <button type="submit" name="boton"> Haz click para enviar información </button>
+            <button type="reset" name="nuevo"> Comenzar a rellensar de nuevo </button>
+            <button type="button" name="boton" onclick='location.href="http://google.com"'> Haz click sobre mi </button>
+        </div>
+        </form>
+        <script>
+            /*    
+    • Ningún elemento vacío
+    • NIF correcto ( comprobar letra)
+    • Mensaje: de entre 2 y 500 caracteres*
+    • Color por defecto: azul *
+    • Días: seleccionar al menos dos*
+    • Preferente: por defecto marcado el lunes *
+    • Botón de “Haz click sobre mí”: ir a Google.com **/
+    
+         window.addEventListener("load", inicio);
+
+        function inicio(){
+            document.getElementById("cursoAcademico").addEventListener( "change", añadirSelect); //change porq no se puede hacer un evento en un option
+            document.getElementById("mensaje").addEventListener( "click", charRestantes);
+            document.getElementById("todos").addEventListener("click", seleccionarTodos);
+            document.getElementById("ninguno").addEventListener("click", desseleccionarTodos);
+            document.getElementById("formulario").addEventListener("change", validarDias);
+            document.getElementById("nif").addEventListener("input", validarNIF);
+            
+        }
+
+        function añadirSelect(e){ //coge el evento con el (e)
+            if(e.target.value==="añadir"){ //si lo que selecciono tiene el valor añadir 
+            var opcion = document.createElement("option");
+            var texto =prompt("¿Qué curso quieres añadir"); //añadir funcion de validar
+            opcion.textContent=texto;
+            var cont=document.getElementById("cursoAcademico");
+            cont.insertBefore(opcion, document.getElementById("añadir"));
+            opcion.value=""; // Se limpia el valor de la opción después de agregarla
+            }
+        }
+
+        function charRestantes(){
+            var mensaje = document.getElementById("mensaje");
+            var contadorCaracteres = document.getElementById("contador");
+
+            mensaje.addEventListener("input", function () {
+            var caracteresRestantes = 500 - mensaje.value.replace(/\r?\n/g, "").length;
+            contador.innerHTML = "Carácteres restantes: " + caracteresRestantes;
+
+            if(caracteresRestantes<498 && caracteresRestantes>0){
+                contador.style.color="green";
+            }
+            else if (caracteresRestantes<0){
+                contador.style.color="red";
+            }
+            else if (caracteresRestantes>=498){
+                contador.style.color="red";
+                contador.innerHTML = "El mensaje tiene que tener al menos más de dos carácteres";
+            }
+
+            
+            });
+        }
+
+        function seleccionarTodos(){
+            for (let i=0; i < document.getElementsByName("dias").length; i++) {
+                if(document.getElementsByName("dias")[i].type === "checkbox" && document.getElementsByName("dias")[i].id!=="ninguno") 
+                {
+                    document.getElementsByName("dias")[i].checked = true;
+                    
+                }
+            }
+        }
+
+        function desseleccionarTodos(){
+            for (let i=0; i < document.getElementsByName("dias").length; i++) {
+                if(document.getElementsByName("dias")[i].type === "checkbox") 
+                {
+                    document.getElementsByName("dias")[i].checked = false;
+                }
+            }
+        }
+
+        function validarDias(e) {
+            if (e.target.name === "dias") {
+                let seleccionados = 0;
+                const dias = document.getElementsByName("dias");
+
+                for (let i = 0; i < dias.length; i++) {
+                    if (dias[i].checked) {
+                        seleccionados++;
+                    }
+                }//for
+
+                if (seleccionados >= 2) {
+                    document.getElementById("msgDias").innerHTML = "";
+                    return true;
+                } else {
+                    document.getElementById("msgDias").innerHTML = "Al menos tienes que seleccionar dos días";
+                    document.getElementById("msgDias").style.color="red";
+                    return false;
+                }
+            }//if
+        }//function
+
+        function validarNIF(){
+            const nif=document.getElementById("nif");
+            
+            nif = nif.toUpperCase();
+
+            const patron = /^[0-9]{8}[A-Z]$/;
+
+            if (!patron.test(nif)) {
+                document.getElementById("msgNIF").innerHTML = "Contiene caracteres no válidos.";
+                document.getElementById("msgNIF").style.color="red" 
+                return false;
+            }
+            // Comprbar letra
+            const letraControl = calcularLetraControl(nif.slice(0, 8));
+            const letraNIF = nif.charAt(8); 
+            //compararla con la valida
+           if(letraControl !== letraNIF){
+                document.getElementById("msgNIF").innerHTML = "La letra del NIF no es válida.";
+                document.getElementById("msgNIF").style.color="red"    
+                return false;
+           }
+           document.getElementById("msgNIF").innerHTML ="";
+           return true;
+        }
+        function calcularLetraControl(numero) {
+            const letras = "TRWAGMYFPDXBNJZSQVHLCKET";
+            const resto = numero % 23;
+            return letras.charAt(resto);
+        }
+
+    </script>
+       
+    </body>
+    </html>
