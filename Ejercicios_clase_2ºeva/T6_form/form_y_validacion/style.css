@@ -1,0 +1,13 @@
+.centrar{
+    display: flex;
+    justify-content: center; /*horizontal*/
+    align-items: center; /*vertical*/
+    text-align: center; /*horizontal*/
+}
+
+.left{
+    display: flex;
+    justify-content: flex-start; /*horizontal*/
+    align-items: center; /*vertical*/
+    text-align: left; /*horizontal*/
+}

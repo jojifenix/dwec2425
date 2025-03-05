@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Para evitar la respuesta secuencial de dos promesas, se utiliza junto con async / await el Promise.all . 
+        function descargarNuevosClientes() {
+            return new Promise((resolve, reject) => {
+            const error = false;
+            setTimeout(() => {
+                if (!error) {
+                resolve('Los clientes fueron descargados');
+                } else {
+                reject('No se pudo descargar el listado de nuevos clientes');
+                }
+            }, 5000);
+            });
+        }
+        function descargarNuevosPedidos() {
+            return new Promise((resolve, reject) => {
+            const error = false;
+            setTimeout(() => {
+                if (!error) {
+                resolve('Descargando pedidos');
+                } else {
+                reject('No se pudo descargar el listado de nuevos pedidos');
+                }
+            }, 3000);
+            });
+        }
+        const app= async () => {
+            try {
+            const clientes_pedidos = await Promise.all([descargarNuevosClientes(),descargarNuevosPedidos()])
+            console.log(clientes_pedidos)
+            console.log(clientes_pedidos[0])
+            console.log(clientes_pedidos[1])
+            } catch (error) {
+            console.log(error);
+            }
+        }
+        app();
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscaminas</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .tablero { display: grid; gap: 2px; margin: 20px auto; width: max-content; }
+        .celda { width: 30px; height: 30px; background: lightgray; border: 1px solid #999; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; }
+        .celda.revelada { background: white; cursor: default; }
+        .celda.mina { background: red; color: white; }
+        .celda.banderada { background: yellow; }
+        .botones-dificultad, .boton-nueva-partida { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Buscaminas</h1>
+    <div class="botones-dificultad"></div>
+        <button onclick="iniciarJuego('facil')">Fácil</button>
+        <button onclick="iniciarJuego('medio')">Medio</button>
+        <button onclick="iniciarJuego('dificil')">Difícil</button>
+    </div>
+    <button class="boton-nueva-partida" onclick="iniciarNuevaPartida()">Nueva Partida</button>
+    <div id="tablero" class="tablero"></div>
+
+    <script>
+        let filas, columnas, cantidadMinas, tablero, banderasRestantes, dificultadActual;
+        
+        const configuraciones = { facil: [8, 8, 10], medio: [10, 10, 15], dificil: [16, 16, 40] };
+
+        function iniciarJuego(dificultad) {
+            dificultadActual = dificultad;
+            [filas, columnas, cantidadMinas] = configuraciones[dificultad];
+            banderasRestantes = cantidadMinas;
+            generarTableroJS();
+            dibujarTableroHTML();
+        }
+
+        function iniciarNuevaPartida() {
+            if (!dificultadActual) return alert('Selecciona una dificultad primero.');
+            iniciarJuego(dificultadActual);
+        }
+
+        function generarTableroJS() {
+            tablero = Array(filas).fill().map(() => Array(columnas).fill(0));
+            colocarBombasTableroJS();
+            calcularNumMinas();
+        }
+
+        function colocarBombasTableroJS() {
+            let posiciones = new Set();
+            while (posiciones.size < cantidadMinas) posiciones.add(Math.floor(Math.random() * filas * columnas));
+            posiciones.forEach(pos => tablero[Math.floor(pos / columnas)][pos % columnas] = 'M');
+        }
+
+        function calcularNumMinas() {
+            const direcciones = [-1, 0, 1]; //direcciones en las que se puede mover la mina (array)
+            for (let f = 0; f < filas; f++) {//realiza dos bucles anidados para recorrer el tablero
+            for (let c = 0; c < columnas; c++) {//vamos analizando cada celda
+                if (tablero[f][c] !== 'M') { //si es una mina no lo realizamos , al contrario si 
+                let contador = 0;// inicializamos en 0
+                for (let df of direcciones) { //recorremos las direcciones de desplazamiento de la mina de manera anidada
+                    for (let dc of direcciones) {//analizamos cada desplazamiento
+                    if (df === 0 && dc === 0) continue;//si estamos en el mismo sitio nos saltamos esta parte
+                    let nf = f + df, nc = c + dc;// si no estamos en el mismo sitio calculamos la nueva posición
+                    if (tablero[nf]?.[nc] === 'M') contador++;//si la nueva posición es una mina sumamos 1 al contador
+                    }
+                }
+                tablero[f][c] = contador;//asignamos el valor del contador en cada caso a cada celda
+                }
+            }
+            }
+        }
+
+        function dibujarTableroHTML() {
+            const elementoTablero = document.getElementById('tablero');
+            elementoTablero.innerHTML = '';
+            elementoTablero.style.gridTemplateColumns = `repeat(${columnas}, 30px)`;
+            elementoTablero.style.gridTemplateRows = `repeat(${filas}, 30px)`;// aplicamos una propiedad de css directamente a la variable para crear la estructura de filas y columnas de la rejilla que creamos.
+
+            for (let f = 0; f < filas; f++) {
+            for (let c = 0; c < columnas; c++) {
+                const celda = document.createElement('div');
+                celda.dataset.fila = f;
+                celda.dataset.columna = c;//añadimos un atributo personalizado a un elemento HTML.A cada celda con el número de fila y columna : <div data-fila="0" data-columna="0"></div>
+                celda.classList.add('celda'); //añade la clase celda a cada celda para tener sus propiedades
+                celda.addEventListener('click', revelarCelda); 
+                celda.addEventListener('contextmenu', colocarBandera);//el evento de activa al hacer click derecho
+                elementoTablero.appendChild(celda);//añadimos todas las celdas al tablero
+            }
+            }
+        }
+
+        function revelarCelda(evento) {
+            const celda = evento.target, f = +celda.dataset.fila, c = +celda.dataset.columna;//obtenemos la celda dónde hemos hecho click y las coordenadas de la celda (fila y columna) convertida en número con +
+            if (celda.classList.contains('revelada') || celda.classList.contains('banderada')) return;// si la celda está revelada o banderada no podemos seguir con el siguiente paso
+            celda.classList.add('revelada');// si no está revelada la marcamos como revelada
+            if (tablero[f][c] === 'M') return perder(celda);// si el tablero en la coordenada de fila y columna , osea la celda que dispara el evento tiene asignada el valor 'M' de MINA , pierdes
+            celda.textContent = tablero[f][c] || '';//en caso contrario asignamos contenido de la celda
+            if (!tablero[f][c]) revelarCeldasVacias(f, c);//nos trasladamos a la función que revela las celdas vacías que no sean la del evento
+        }
+
+        function colocarBandera(evento) {
+            evento.preventDefault();//evitamos que aparezca el menu contextual del clicl derecho
+            const celda = evento.target;//obtenemos la celda dónde hemos hecho click derecho
+            if (celda.classList.contains('revelada')) return; //si la celda esá revelada no podemos seguir con poner bandera (el siguiente paso)
+            celda.classList.toggle('banderada');//si no lo está entonces cambiamos el contenido de class a banderada para coger sus propiedades.
+            banderasRestantes += celda.classList.contains('banderada') ? -1 : 1;// restamos 1 al contador si la celda es banderada y sumamos 1 si no.
+            document.title = `Banderas restantes: ${banderasRestantes}`;
+        }
+
+        function revelarCeldasVacias(f, c) {
+            const direcciones = [-1, 0, 1];
+            for (let df of direcciones) {
+            for (let dc of direcciones) {// crea el bucle de iteraciones en las direcciones de desplazamiento
+                if (df === 0 && dc === 0) continue;// si estamos en el mismo sitio pasamos a otro cosa
+                let nf = f + df, nc = c + dc;// creamos la nueva fila  y columna a partir de la celda del evento más la dirección de desplazamiento
+                let vecino = document.querySelector(`[data-fila='${nf}'][data-columna='${nc}']`);//cogemos el elemento vecino de la celda del evento
+                if (vecino && !vecino.classList.contains('revelada') && tablero[nf]?.[nc] !== 'M') {//ejecutamos si el vecino existe y no tiene clase revelada ni mina .
+                vecino.classList.add('revelada');//asignamos clase revelada
+                vecino.textContent = tablero[nf][nc] || '';//contenido de la celda vecino asignado
+                if (!tablero[nf][nc]) revelarCeldasVacias(nf, nc);//si está vacía la casilla de vecino vuelve a activar la función con las cordenadas inciales las del vecino
+                }
+            }
+            }
+        }
+
+        function perder(celda) {
+            celda.classList.add('mina');// añadimos la celda del evento a la clase mina
+            celda.textContent = '💣';//cambiamos el contenido bomba
+            alert('¡Perdiste!');
+            revelarTodo();//al perder activamos la función que revela todo
+        }
+
+        function revelarTodo() {
+            document.querySelectorAll('.celda').forEach(celda => {
+                const f = +celda.dataset.fila, c = +celda.dataset.columna;//para los elementos con clase celda , para cada uno obtenemos de la propiedad de celda su fila y columna.
+                celda.classList.add('revelada');// añadimos cada celda a la clase revelada
+                celda.textContent = tablero[f][c] === 'M' ? '💣' : tablero[f][c] || '';//evaluamos que el contenido de cada celda ,tenga asociado el valor M en su coordenada, si es así mostramos BOMBA , en los demás dejamos vacío el contenido
+                if (tablero[f][c] === 'M') celda.classList.add('mina');//si la celda tiene una mina añadimos la clase mina
+            });
+        }
+    </script>
+</body>
+</html>

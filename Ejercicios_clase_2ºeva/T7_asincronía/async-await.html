@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //                                              Ejemplo 1
+
+        /*console.log(1+1)
+        hola();
+        console.log(2+2)*/
+
+        console.log(1+1)
+        try{
+            hola();
+        }catch(error){
+            console.log(error)
+        }
+        console.log(2+2)
+
+        //Nos  da un error y console después .En el siguient ejemplo nos da los dos resultados, sin que se bloquee nada por un error ya que tenemos trycatch
+
+        //                                                      Ejemplo 2
+    
+        async function miFuncion(){
+            let miPromesa=new Promise((resolve,reject)=>{
+                setTimeout(()=>resolve("He esperado 2 segundos"),2000)
+            })
+            console.log(1+1)
+            let resultado=await miPromesa;// (Pausado hasta que se  cumpla la promesa)
+            console.log(resultado)
+            console.log(2+2)
+        }
+
+        //                                                  Ejemplo 3
+
+        const cargarDatos= async()=>{
+            const url="https://jsonplaceholder.typicode.com/todos/1"
+            const res= await fetch(url) //espera respuesta
+            const datos= await res.json() //espera hasta tener construido el json
+            console.log(datos)
+        };
+
+        cargarDatos();
+    
+
+
+    
+    </script>
+</body>
+</html>
